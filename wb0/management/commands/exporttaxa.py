@@ -7,12 +7,10 @@ class Command(BaseCommand):
     help = "Exports taxa"
 
     def handle(self, *args, **options):
-    	all_genera = Genus.objects.all()
-    	all_fields = Genus._meta.get_fields()
-    	for genus in all_genera:
+    	for genus in Genus.objects.all():
     	    l = []
-    	    for field in all_fields[1:]:
-    	        l.append(field)	
-    	        print(l)
+    	    for field in Genus._meta.get_fields()[1:]:
+    	    	l.append(field.attname)	
+    	    print(l)
 
-# TODO: apply to species as well
+# TODO: apply to species
