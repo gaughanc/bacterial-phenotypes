@@ -10,7 +10,7 @@ class Command(BaseCommand):
     	for genus in Genus.objects.all():
     	    l = []
     	    for field in Genus._meta.get_fields()[1:]:
-    	    	l.append(field.attname)	
+    	    	l.append(getattr(genus, field.name))	
     	    print(l)
 
 # TODO: apply to species
