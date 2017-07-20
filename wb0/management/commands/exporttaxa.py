@@ -8,10 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fields = Genus._meta.get_fields()[1:]
-        l = []
-        for field in fields:
-            l.append(field.name)
-        print("\t".join(l))
+        print("\t".join(field.name for field in fields))
         for genus in Genus.objects.all():
             l = []
             for field in fields:
