@@ -1,0 +1,4 @@
+TODO
+
+- Change wb0 app to validnames, since it will be used to record
+  descriptions of valid names from the literature.
