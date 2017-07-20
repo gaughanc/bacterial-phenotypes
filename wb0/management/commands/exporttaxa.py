@@ -1,15 +1,19 @@
 from django.core.management.base import BaseCommand, CommandError
-from wb0.models import Genus, Species
+from wb0.models import Genus
 
-# for each genus, print a list of its attributes
+# for each genus, print its list of attributes
 
 class Command(BaseCommand):
-    help = "Exports taxa"
+    help = "Exports genera"
 
     def handle(self, *args, **options):
-    	for Taxon in [Genus, Species]:
-    	    for taxon in Taxon.objects.all():
-    	        l = []
-    	        for field in Taxon._meta.get_fields()[1:]:
-    	    	    l.append(field.name + ": " + getattr(taxon, field.name))	
-    	        print(l)
+        fields = Genus._meta.get_fields()[1:]
+        l = []
+        for field in fields:
+            l.append(field.name)
+        print("\t".join(l))
+        for genus in Genus.objects.all():
+            l = []
+            for field in fields:
+                l.append(getattr(genus, field.name))	
+            print("\t".join(l))
