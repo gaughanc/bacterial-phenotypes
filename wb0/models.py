@@ -13,13 +13,15 @@ class Taxon(models.Model):
 
     AEROBE_CHOICES = make_choices(
         "aerobe", "facultative anaerobe", "microaerobe", "obligate anaerobe",
-    	"anaerobe (unspecified)", "microaerobe or anaerobe")
+    	"anaerobe (unspecified)", "microaerobe or anaerobe", "microaerobe or aerobe",
+        "aerotolerant")
     aerobic_status = models.CharField(max_length=100, choices=AEROBE_CHOICES)
 
     MORPHOLOGY_CHOICES = make_choices(
         "rod/ bacilli", "slightly curved rods", "cocci", "oval-shaped/ coccobaccili",
         "fusiform", "rods or oval-shaped", "cocci or oval-shaped",
-        "rods or slightly curved rods", "ovoid", "pleomorphic", "rods, cocci, or oval-shaped")
+        "rods or slightly curved rods", "ovoid", "pleomorphic", "rods, cocci, or oval-shaped",
+        "rods or cocci", "pleomorphic rods", "pleomorphic cocci")
     morphology = models.CharField(max_length=100, choices=MORPHOLOGY_CHOICES)
 
     MOTILITY_CHOICES = make_choices("motile", "non-motile", "variable")
@@ -32,7 +34,9 @@ class Taxon(models.Model):
         "Gram-positive", "Gram-negative", "Gram-variable")
     gram_stain = models.CharField(max_length=100, choices=GRAM_CHOICES)
 
-    BILE_CHOICES = make_choices("growth in 20% bile", "no growth in 20% bile")
+    BILE_CHOICES = make_choices(
+        "growth in 20% bile", "no growth in 20% bile", "somewhat inhibited by 20% bile",
+        "mixed")
     bile_sensitive = models.CharField(max_length=100, choices=BILE_CHOICES)
 
     SACCHAROLYTIC_CHOICES = make_choices(
