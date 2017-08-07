@@ -7,8 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         genera = []
         species = []
-        i = 0
-        for g in Genus.objects.all():
+        for i, g in enumerate(Genus.objects.all()):
             genusname = getattr(g, "name")
             genera.append(genusname)
             species.append([])
@@ -16,6 +15,5 @@ class Command(BaseCommand):
                 speciesname = getattr(s, "name")
                 if genusname in speciesname:    
                     species[i].append(speciesname)
-            i += 1
         print(genera)
         print(species)
