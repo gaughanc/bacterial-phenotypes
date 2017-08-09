@@ -13,11 +13,15 @@ class Command(BaseCommand):
             genera.append(genusname)
             species.append([])
             catalase.append([])
+            if genusname == "Anearotruncas":
+                break
             for s in Species.objects.all():
                 speciesname = getattr(s, "name")
                 if genusname in speciesname:    
                     species[i].append(speciesname)
                     catalase[i].append(getattr(s, "catalase"))
+                if speciesname == "Bacteroides oulorum":
+                    break 
         #print(genera)
         #print(species)
         #print(catalase)
