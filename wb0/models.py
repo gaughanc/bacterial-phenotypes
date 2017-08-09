@@ -63,7 +63,8 @@ class Species(Taxon):
         "urease positive", "urease negative", "urease variable")
     urease = models.CharField(max_length=20, choices=UREASE_CHOICES)
 
-    CATALASE_CHOICES = make_choices("catalase positive", "catalase negative")
+    CATALASE_CHOICES = make_choices(
+        "catalase positive", "catalase negative", "catalase variable")
     catalase = models.CharField(max_length=20, choices=CATALASE_CHOICES)
     
     FATTYACID_CHOICES = make_choices(
