@@ -14,14 +14,16 @@ class Taxon(models.Model):
     AEROBE_CHOICES = make_choices(
         "aerobe", "facultative anaerobe", "microaerobe", "obligate anaerobe",
     	"anaerobe (unspecified)", "microaerobe or anaerobe", "microaerobe or aerobe",
-        "aerotolerant")
+        "aerotolerant", "variable")
     aerobic_status = models.CharField(max_length=100, choices=AEROBE_CHOICES)
 
     MORPHOLOGY_CHOICES = make_choices(
         "rod/ bacilli", "slightly curved rods", "cocci", "oval-shaped/ coccobaccili",
         "fusiform", "rods or oval-shaped", "cocci or oval-shaped",
         "rods or slightly curved rods", "ovoid", "pleomorphic", "rods, cocci, or oval-shaped",
-        "rods or cocci", "pleomorphic rods", "pleomorphic cocci")
+        "rods or cocci", "pleomorphic rods", "pleomorphic cocci", "spirals", "spirals or cocci",
+        "spiral or curved rods", "cocci or curved rods", "curved rods", "rods or curved rods",
+        "spirals, cocci, or curved rods", "bent rods", "cocci or ovoid")
     morphology = models.CharField(max_length=100, choices=MORPHOLOGY_CHOICES)
 
     MOTILITY_CHOICES = make_choices("motile", "non-motile", "variable")
@@ -36,7 +38,7 @@ class Taxon(models.Model):
 
     BILE_CHOICES = make_choices(
         "growth in 20% bile", "no growth in 20% bile", "somewhat inhibited by 20% bile",
-        "mixed")
+        "mixed", "growth in 2% bile")
     bile_sensitive = models.CharField(max_length=100, choices=BILE_CHOICES)
 
     SACCHAROLYTIC_CHOICES = make_choices(
@@ -68,7 +70,7 @@ class Species(Taxon):
     catalase = models.CharField(max_length=20, choices=CATALASE_CHOICES)
     
     FATTYACID_CHOICES = make_choices(
-        "consumed", "major product", "minor product", "not producted")
+        "consumed", "major product", "minor product", "not producted", "not consumed")
     formate_production = models.CharField(max_length=100, choices=FATTYACID_CHOICES)
     acetate_production = models.CharField(max_length=100, choices=FATTYACID_CHOICES)
     propionate_production = models.CharField(max_length=100, choices=FATTYACID_CHOICES)

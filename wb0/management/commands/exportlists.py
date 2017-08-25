@@ -8,11 +8,13 @@ class Command(BaseCommand):
         genera = []
         species = []
         catalase = []
+        catcount = []
         for i, g in enumerate(Genus.objects.all()):
             genusname = getattr(g, "name")
             genera.append(genusname)
-            species.append([])
-            catalase.append([])
+            for l in [species, catalase]:
+                l.append([])
+            catcount.append([0, 0])
             if genusname == "Anearotruncas":
                 break
             for s in Species.objects.all():
@@ -22,6 +24,7 @@ class Command(BaseCommand):
                     catalase[i].append(getattr(s, "catalase"))
                 if speciesname == "Bacteroides oulorum":
                     break 
-        #print(genera)
+        print(genera)
         #print(species)
         #print(catalase)
+        #print(catcount)
