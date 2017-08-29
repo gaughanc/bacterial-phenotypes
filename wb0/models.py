@@ -14,7 +14,7 @@ class Taxon(models.Model):
     AEROBE_CHOICES = make_choices(
         "aerobe", "facultative anaerobe", "microaerobe", "obligate anaerobe",
     	"anaerobe (unspecified)", "microaerobe or anaerobe", "microaerobe or aerobe",
-        "aerotolerant", "variable")
+        "aerotolerant", "variable", "aerobe, microaerobe, or anaerobe")
     aerobic_status = models.CharField(max_length=100, choices=AEROBE_CHOICES)
 
     MORPHOLOGY_CHOICES = make_choices(
@@ -23,7 +23,10 @@ class Taxon(models.Model):
         "rods or slightly curved rods", "ovoid", "pleomorphic", "rods, cocci, or oval-shaped",
         "rods or cocci", "pleomorphic rods", "pleomorphic cocci", "spirals", "spirals or cocci",
         "spiral or curved rods", "cocci or curved rods", "curved rods", "rods or curved rods",
-        "spirals, cocci, or curved rods", "bent rods", "cocci or ovoid")
+        "spirals, cocci, or curved rods", "bent rods", "cocci or ovoid", "irregular rods",
+        "irregular", "cocci, oval-shaped, or club-shaped rods", "Y-shaped rods",
+        "slightly curved rods or club-shaped", "irregular cocci", "spiral, ring shaped, or Y-shaped rods",
+        "rods, oval-shaped, or club-shaped", "club or Y-shaped")
     morphology = models.CharField(max_length=100, choices=MORPHOLOGY_CHOICES)
 
     MOTILITY_CHOICES = make_choices("motile", "non-motile", "variable")
