@@ -34,6 +34,14 @@ class Command(BaseCommand):
                     l.append(getattr(g, fields[i])) 
             if genera == working_genera:
                 break
+        # manually add Staph
+        for i, g in enumerate(Genus.objects.all()):
+            genusname = getattr(g, "name")
+            if genusname == "Streptococcus":
+                genera.append(genusname)
+                catcount.append([0, 0])
+                for i, l in enumerate(lists[2:9]):
+                    l.append(getattr(g, fields[i]))
         # write python functions
         for i, lname in enumerate(lnames):
             print("\n".join(["def get_{}():".format(lname), "    {} = {}".format(lname, lists[i]), "    return {}".format(lname), ""]))
@@ -54,5 +62,14 @@ class Command(BaseCommand):
                         l[i].append(getattr(s, fields[j]))
                 if species[i] == working_species[i]:
                     break
+            # manually add Strep
+        for l in lists:
+            l.append([])
+        for s in Species.objects.all():
+            speciesname = getattr(s, "name")
+            if "Streptococcus" in speciesname:
+                species[-1].append(speciesname)
+                for j, l in enumerate(lists[1:]):
+                    l[-1].append(getattr(s, fields[j]))
         for i, lname in enumerate(lnames):
             print("\n".join(["def get_{}():".format(lname), "    {} = {}".format(lname, lists[i]), "    return {}".format(lname), ""]))
